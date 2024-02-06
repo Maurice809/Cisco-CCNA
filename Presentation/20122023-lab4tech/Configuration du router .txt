@@ -1,0 +1,79 @@
+Configuration du router 
+
+- enable
+// Pour obtenir les privilege de super utilisteur ou ROOT
+
+- configure terminal
+// accedez au mode configuration
+
+- ipv6 unicast-routing
+// rendre le routeur capable de router des packet IPv6
+
+- interface gigabitEthernet 0/0
+// selection de l'interface
+
+- ipv6 address 2001:db8:1:1::1/64
+// ajoute l'adresse IPv6
+
+- ipv6 address fe80::1 link-local
+// ajoute l'adresse local-link
+
+- no shutdown 
+// Mise en fonction de l'interface
+
+- exit 
+// quitte le mode
+
+interface gigabitEthernet 0/2
+ipv6 address 2001:db8:1:2::1/64
+ipv6 address fe80::1 link-local
+no shutdown 
+exit
+
+interface serial 0/0/0
+ipv6 address 2001:db8:1:a001::2/64
+ipv6 address fe80::1 link-local
+no shutdown 
+exit
+
+- show ipv6 interface brief
+// controle de ma configuration
+
+configure terminal
+interface gigabitEthernet 0/2
+no ipv6 address 2001:db8:1:2::1/64
+no ipv6 address fe80::1 link-local
+shutdown 
+exit
+
+default interface GigabitEthernet0/2
+shutdown
+exit
+
+configure terminal
+interface gigabitEthernet 0/1
+ipv6 address 2001:db8:1:2::1/64
+ipv6 address fe80::1 link-local
+no shutdown 
+exit
+exit
+
+configure terminal
+hostname sita
+// donnez un nom au routeur
+
+- reload
+// redemarre le router
+
+configuration du server compta
+
+2001:db8:1:1::4 64
+fe80::1
+
+configuration du server Production
+
+2001:db8:1:2::4 64
+fe80::1
+
+
+
